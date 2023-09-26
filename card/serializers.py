@@ -5,7 +5,7 @@ from .models import LinkSciol
 class LinkSciolSerializers(serializers.ModelSerializer):
     class Meta:
         model = LinkSciol
-        fields = '__all__'
+        fields = ('link_sciol', )
         
         
 # class LinkCreateSerialiers(serializers.ModelSerializer):
