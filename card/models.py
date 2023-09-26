@@ -1,7 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from workspce.models import WorkspaceModel
+from workspce.models import WorkspaceModel, HomeModel
 from accounts.models import User
+from core.models import CreateModel
 
 
 class CardModel(models.Model):
@@ -18,3 +19,22 @@ class CardModel(models.Model):
         verbose_name = 'card'
         verbose_name_plural = 'cards'
         db_table = 'card-model'
+        
+        
+
+# new app
+class CardHomeModel(CreateModel):
+    scial_name = models.ForeignKey(HomeModel, on_delete=models.CASCADE)
+    choose_format = (
+        ('148', '148'),
+        ('240', '240'),
+        ('360', '360'),
+        ('720', '720'),
+        ('1080', '1080'))
+    format = models.CharField(_('resolution'), max_length=4, choices=choose_format)
+    
+    class Meta:
+        verbose_name = 'card_home'
+        verbose_name_plural = 'card_homes'
+        db_table = 'card'
+        
