@@ -29,7 +29,7 @@ urlpatterns = [
     # app
     # path('accounts/', include('accounts.urls', namespace='accounts')),
     path('home/', include('workspce.urls', namespace='workspace')),
-    path('card/', include('card.urls', namespace='card')),
+    path('home/', include('card.urls', namespace='card')),
     # jwt token
     # path('token/generate/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     # path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),

@@ -6,7 +6,8 @@ from . import views
 
 app_name = 'card'
 urlpatterns = [
-    path('lc_card/', views.LinkSciolListCreateApiView.as_view()),
-    path('d_card/<pk>/', views.LinkSciolDelete.as_view()),
+    path('list-link/', views.LinkSciolListCreateApiView.as_view()),
+    path('create-link/', views.LinkCreateApiView.as_view()),
+    path('delete-link/<pk>/', views.LinkSciolDelete.as_view()),
     
 ]

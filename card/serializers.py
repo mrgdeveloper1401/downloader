@@ -6,3 +6,10 @@ class LinkSciolSerializers(serializers.ModelSerializer):
     class Meta:
         model = LinkSciol
         fields = '__all__'
+        
+        
+# class LinkCreateSerialiers(serializers.ModelSerializer):
+#     class Meta:
+#         model = LinkSciol
+#         fields = ('link_sciol', )
+        

@@ -6,7 +6,7 @@ from . import views
 
 app_name = 'workspace'
 urlpatterns = [
-    path('lc_sciol/', views.SciolListCreateApiview.as_view()),
+    path('', views.SciolListCreateApiview.as_view()),
     
         
 ]
