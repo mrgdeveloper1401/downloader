@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import WorkspaceModel, HomeModel
+from .models import HomeModel
 
 # @admin.register(WorkspaceModel)
 # class WorkspaceAdmin(admin.ModelAdmin):
@@ -10,5 +10,5 @@ from .models import WorkspaceModel, HomeModel
 
 @admin.register(HomeModel)
 class WorkspaceHomeadmin(admin.ModelAdmin):
-    list_display = ('choose', 'link_downloaad', 'create_at')
+    list_display = ('choose', 'create_at')
     list_filter = ('create_at', 'choose')

@@ -3,7 +3,7 @@ from . import views
 
 app_name = 'accounts'
 urlpatterns = [
-    path('create/', views.UserCreateApiView.as_view()),
-    path('profile/<pk>/', views.ProfileApiview.as_view()),
+    # path('create/', views.UserCreateApiView.as_view()),
+    # path('profile/<pk>/', views.ProfileApiview.as_view()),
 
 ]

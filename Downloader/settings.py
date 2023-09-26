@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 
 LOCAL_APP = [
     'rest_framework',
-    'rest_framework_simplejwt',
+    # 'rest_framework_simplejwt',
     'drf_spectacular',
     
 ]
@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'workspce.apps.WorkspceConfig',
     'card.apps.CardConfig',
-    'lang.apps.LangConfig',
     'core.apps.CoreConfig',
     
     *LOCAL_APP,
@@ -60,16 +59,16 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # ),
 
 }
 
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=7),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
-}
+# SIMPLE_JWT = {
+#     'ACCESS_TOKEN_LIFETIME': timedelta(days=7),
+#     'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
+# }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -164,4 +163,4 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-AUTH_USER_MODEL = 'accounts.User'
+# AUTH_USER_MODEL = 'accounts.User'
