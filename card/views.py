@@ -1,36 +1,35 @@
-from rest_framework.generics import ListCreateAPIView, DestroyAPIView, ListAPIView
 from rest_framework.views import APIView
-from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework.generics import DestroyAPIView
 from rest_framework import status
-from .serializers import LinkSciolSerializers
-from .models import LinkSciol
+from .serializers import LinkRequestSerializer, DeleteSerializers
 from main import Downloader
-from workspce.serializers import SciolSerializers
+from .models import LinkSciol
 
+class DownloadLinkAPIView(APIView):
+    def post(self, request):
+        serializer = LinkRequestSerializer(data=request.data)
+        if serializer.is_valid():
+            link_type = serializer.validated_data['link_type']
+            link_url = serializer.validated_data['link_url']
 
-class LinkListApiView(APIView):
-    serializer_class = LinkSciolSerializers
-    sciol_name = SciolSerializers()
-    def post(self, request: Request):
-        link_type = request.data.get('link_type')
-        link_url = request.data.get('link_url')
+            downloader = Downloader()
+            if link_type == 'instagram':
+                file_path = downloader.insta_downloader(link_url)
+            elif link_type == 'facebook':
+                file_path = downloader.facebook_downloader(link_url)
+            elif link_type == 'twitter':
+                file_path = downloader.twitter_downloader(link_url)
+            else:
+                return Response({'error': 'Invalid link type'}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Check the link type and call the appropriate download method
-        downloader = Downloader()
-
-        if link_type == 'instagram':
-            file_path = downloader.insta_downloader(link_url)
-        elif link_type == 'facebook':
-            file_path = downloader.facebook_downloader(link_url)
-        elif link_type == 'twitter':
-            file_path = downloader.twitter_downloader(link_url)
+            return Response({'download_link': file_path}, status=status.HTTP_200_OK)
         else:
-            return Response({'error': 'Invalid link type'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        # Save the file path or link to the database (assuming LinkSciol model has a 'file_path' field)
-        link_sciol = LinkSciol.objects.create(file_path=file_path)
 
-        # Serialize the response
-        serializer = LinkSciolSerializers(link_sciol)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+class deleteLinkApiView(DestroyAPIView):
+    """delete file download
+    """
+    serializer_class = DeleteSerializers
+    queryset = LinkSciol.objects.all()
