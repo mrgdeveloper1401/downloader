@@ -7,6 +7,8 @@ from main import Downloader
 from .models import LinkSciol
 
 class DownloadLinkAPIView(APIView):
+    serializer_class = LinkRequestSerializer
+    
     def post(self, request):
         serializer = LinkRequestSerializer(data=request.data)
         if serializer.is_valid():
