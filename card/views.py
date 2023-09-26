@@ -6,11 +6,12 @@ from rest_framework import status
 from .serializers import LinkSciolSerializers
 from .models import LinkSciol
 from main import Downloader
+from workspce.serializers import SciolSerializers
 
 
 class LinkListApiView(APIView):
     serializer_class = LinkSciolSerializers
-    
+    sciol_name = SciolSerializers()
     def post(self, request: Request):
         link_type = request.data.get('link_type')
         link_url = request.data.get('link_url')
