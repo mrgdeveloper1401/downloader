@@ -3,7 +3,7 @@ from .models import User
 from django.contrib.auth.admin import UserAdmin
 
 
-@admin.register(User)
-class UsersAdmin(UserAdmin):
-    ...
+# @admin.register(User)
+# class UsersAdmin(UserAdmin):
+#     ...
 
