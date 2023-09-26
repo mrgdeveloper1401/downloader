@@ -8,6 +8,8 @@ from django.shortcuts import get_object_or_404
 from .models import WorkspaceModel
 from .serializers import WorkspaceSerializers
 from permission import IsOwner
+from django.db import reset_queries
+
 
 class WorkspaceListApiView(ListAPIView):
     serializer_class = WorkspaceSerializers
@@ -25,12 +27,14 @@ class WorkspaceEditApiView(RetrieveUpdateAPIView):
 
 
 class WorkspaceDeleteApiView(APIView):
+    reset_queries()
     permission_classes = (IsAuthenticated, IsOwner)
     
     def delete(self, request: Request, pk):
         workspace = get_object_or_404(WorkspaceModel, pk=pk)
         self.check_object_permissions(request, workspace)
         if workspace.is_active == False:
+            print(reset_queries)
             return Response({'message': 'workspace not found'})
         workspace.is_active = False
         workspace.save()
