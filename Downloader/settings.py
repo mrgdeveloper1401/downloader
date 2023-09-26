@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'workspce.apps.WorkspceConfig',
     'card.apps.CardConfig',
     'core.apps.CoreConfig',
-    
     *LOCAL_APP,
     
     

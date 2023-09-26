@@ -34,18 +34,18 @@ class LinkSciol(models.Model):
         
 
 
-class ResolotionSciolModel(CreateModel):
-    scial_name = models.ForeignKey(LinkSciol, on_delete=models.CASCADE)
-    choose_format = (
-        ('148', '148'),
-        ('240', '240'),
-        ('360', '360'),
-        ('720', '720'),
-        ('1080', '1080'))
-    format = models.CharField(_('resolution'), max_length=4, choices=choose_format)
+# class ResolotionSciolModel(CreateModel):
+#     scial_name = models.ForeignKey(LinkSciol, on_delete=models.CASCADE)
+#     choose_format = (
+#         ('148', '148'),
+#         ('240', '240'),
+#         ('360', '360'),
+#         ('720', '720'),
+#         ('1080', '1080'))
+#     format = models.CharField(_('resolution'), max_length=4, choices=choose_format)
     
-    class Meta:
-        verbose_name = 'ResolotionSciol'
-        verbose_name_plural = 'ResolotionSciols'
-        db_table = 'ResolotionSciol'
+#     class Meta:
+#         verbose_name = 'ResolotionSciol'
+#         verbose_name_plural = 'ResolotionSciols'
+#         db_table = 'ResolotionSciol'
         

@@ -1,5 +1,7 @@
-# from rest_framework import serializers
+from rest_framework import serializers
+
 # from .models import WorkspaceModel
+from .models import HomeModel
 # from accounts.serializers import ProfileSerializers
 # from card.serializers import CardSerializers
 
@@ -16,3 +18,8 @@
 #             'is_active': {'read_only': True},
             
 #         }
+
+class SciolSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = HomeModel
+        fields = '__all__'
