@@ -22,10 +22,10 @@ from core.models import CreateModel
 # new ---------------------------------------------------------
 class HomeModel(CreateModel):
     choose_sciol = (
-        ('instagram', 'Instagram'),
-        ('facebook', 'Facebook'),
-        ('twitter', 'Twitter'),
-        ('linkedin', 'Linkedin'),
+        ('instagram', 'instagram'),
+        ('facebook', 'facebook'),
+        ('twitter', 'twitter'),
+        # ('linkedin', 'Linkedin'),
     )
     choose = models.CharField(_('scoil'), choices=choose_sciol, max_length=9)
     
