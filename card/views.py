@@ -13,29 +13,33 @@ class ShowLinkApiView(ListAPIView):
     serializer_class = LinkSerializers
     queryset = LinkSciol.objects.all()
 
+
 class InstagramDownloadView(APIView):
     def post(self, request: Request):
         try:
             request_link = request.data['link_url']
-            fname = request.data.get('fname')  # Using get to handle None if 'fname' is not present
+            fname = request.data['fname']
         except KeyError:
-            return Response(data={'messages': 'please enter a valid link'})
+            return Response(data={'messages': 'please enter valid link'})
         
-        # Create an instance of the Downloader class
         downloader = Downloader()
-        
-        # Call the insta_downloader method on the instance
-        downloader_link = downloader.insta_downloader(link=request_link)
+        downloader_link = downloader.download_file(
+            Downloader.insta_downloader(
+                link=request_link
+            ),
+            fname
+        )
         
         data = {
             'download_link': downloader_link
         }
         return Response(data=data, status=status.HTTP_201_CREATED)
-
     
 class deleteLinkApiView(APIView):
     """delete file download
     """
+    serializer_class = LinkSerializers
+    
     def delete(self, request: Request, pk):
         try:
             link = LinkSciol.objects.get(pk=pk)
