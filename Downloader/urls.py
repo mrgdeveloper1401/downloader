@@ -28,7 +28,7 @@ urlpatterns = [
     path('', include('rest_framework.urls')),
     # app
     # path('accounts/', include('accounts.urls', namespace='accounts')),
-    path('home/', include('workspce.urls', namespace='workspace')),
+    # path('home/', include('workspce.urls', namespace='workspace')),
     path('home/', include('card.urls', namespace='card')),
     # jwt token
     # path('token/generate/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
