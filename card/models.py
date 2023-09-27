@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from workspce.models import HomeModel
-from core.models import CreateModel
+# from workspce.models import HomeModel
+# from core.models import CreateModel
 
 
 # class CardModel(models.Model):
@@ -23,7 +23,7 @@ from core.models import CreateModel
 
 # new app -------------------------------------------------------
 class LinkSciol(models.Model):
-    sciol_name = models.ForeignKey(HomeModel, on_delete=models.CASCADE, related_name='sciol_name')
+    # sciol_name = models.ForeignKey(HomeModel, on_delete=models.CASCADE, related_name='sciol_name')
     link_sciol = models.URLField(_('link'), max_length=255)
 
 

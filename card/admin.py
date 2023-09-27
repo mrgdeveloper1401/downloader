@@ -16,4 +16,4 @@ from .models import  LinkSciol
     
 @admin.register(LinkSciol)
 class CardHomeAdmin(admin.ModelAdmin):
-    list_display = ('sciol_name', 'id')
+    list_display = ('id', 'link_sciol')
