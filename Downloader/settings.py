@@ -48,9 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
-    'workspce.apps.WorkspceConfig',
     'card.apps.CardConfig',
-    'core.apps.CoreConfig',
     *LOCAL_APP,
     
     
