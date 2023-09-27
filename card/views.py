@@ -15,28 +15,31 @@ class ShowLinkApiView(ListAPIView):
 
 
 class InstagramDownloadView(APIView):
-    """create link for download
+    """start download when link is valid
     """
     
     def post(self, request: Request):
         try:
-            request_link = request.data['link_url']
-            fname = request.data['fname']
-        except KeyError:
-            return Response(data={'messages': 'please enter valid link'})
-        
-        downloader = Downloader()
-        downloader_link = downloader.download_file(
-            Downloader.insta_downloader(
-                link=request_link
-            ),
-            fname
-        )
-        
-        data = {
-            'download_link': downloader_link
-        }
-        return Response(data=data, status=status.HTTP_201_CREATED)
+            # استفاده از request.data.get برای دسترسی به داده‌ها و جلوگیری از خطا در صورت عدم وجود فیلد
+            request_link = request.data.get('link_url', None)
+            print(request_link)
+            fname = request.data.get('fname', None)
+            
+            # اگر فیلد‌ها وجود دارند، ادامه اجرا
+            if request_link or fname:
+                downloader = Downloader()
+                downloader_link = downloader.download_file(downloader.insta_downloader(link=request_link), fname)
+                data = {'downloader_link': downloader_link}
+                return Response(data=data, status=status.HTTP_201_CREATED)
+            else:
+                # در صورت عدم وجود فیلد‌ها، پیام خطا مناسب را برمی‌گردانیم
+                return Response(data={'messages': 'please enter valid link'}, status=status.HTTP_400_BAD_REQUEST)
+            
+        except Exception as e:
+            # در صورت بروز خطا، ارسال پیام خطا و کد وضعیت مناسب
+            return Response(data={'messages': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+    
     
 class deleteLinkApiView(APIView):
     """delete file download
