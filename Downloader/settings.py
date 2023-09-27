@@ -33,13 +33,11 @@ ALLOWED_HOSTS = []
 
 LOCAL_APP = [
     'rest_framework',
-    # 'rest_framework_simplejwt',
     'drf_spectacular',
     
 ]
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,9 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
-    'workspce.apps.WorkspceConfig',
     'card.apps.CardConfig',
-    'core.apps.CoreConfig',
     *LOCAL_APP,
     
     
@@ -58,16 +54,8 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
-    # 'DEFAULT_AUTHENTICATION_CLASSES': (
-    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
-    # ),
-
 }
 
-# SIMPLE_JWT = {
-#     'ACCESS_TOKEN_LIFETIME': timedelta(days=7),
-#     'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
-# }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
