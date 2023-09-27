@@ -24,7 +24,7 @@ from core.models import CreateModel
 # new app -------------------------------------------------------
 class LinkSciol(models.Model):
     sciol_name = models.ForeignKey(HomeModel, on_delete=models.CASCADE, related_name='sciol_name')
-    link_sciol = models.CharField(_('link'), max_length=255)
+    link_sciol = models.URLField(_('link'), max_length=255)
 
 
     class Meta:
