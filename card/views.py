@@ -33,8 +33,13 @@ class InstagramDownloadView(APIView):
         return Response(data=data, status=status.HTTP_201_CREATED)
 
     
-class deleteLinkApiView(DestroyAPIView):
+class deleteLinkApiView(APIView):
     """delete file download
     """
-    serializer_class = LinkSerializers
-    queryset = LinkSciol.objects.all()
+    def delete(self, request: Request, pk):
+        try:
+            link = LinkSciol.objects.get(pk=pk)
+            link.delete()
+            return Response({"messages": 'successfly deleted link'})
+        except LinkSciol.DoesNotExist:
+            return Response({"messages": 'not found'})
